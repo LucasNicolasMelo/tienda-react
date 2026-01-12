@@ -3,8 +3,6 @@ import { useState, useEffect } from "react"
 export default function ItemCount(){
     const [count, setCount] = useState(1)
 
-    useEffect( () => {}, []);
-
     function handleResta (){
         if (count > 1) {
             setCount(count - 1)
