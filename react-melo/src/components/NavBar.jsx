@@ -10,7 +10,7 @@ export default function NavBar() {
             <a href="#">Platos</a>
         </li>
         <li>
-            <a href="#">Bowls</a>
+            <a href="#">Cuencos</a>
         </li>
         <li>
             <a href="#">Tazas</a>

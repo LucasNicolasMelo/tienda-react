@@ -1,4 +1,4 @@
-products = [
+const products = [
 {
   id: 1,
   title: "Taza azul",
@@ -75,7 +75,7 @@ products = [
   description: "Modelo alternativo de taza rosa de 300 ml, cada pieza es única.",
   material: "Arcilla esmaltada",
   colors: "Rosa"
-}
+},
 {
   id: 8,
   title: "Plato celeste",
@@ -130,7 +130,7 @@ products = [
   description: "Plato pequeño de 14 cm, ideal para snacks, salsas o postres.",
   material: "Arcilla esmaltada",
   colors: ""
-}
+},
 {
   id: 13,
   title: "Cuenco rosa",
@@ -198,3 +198,5 @@ products = [
   colors: ""
 }
 ]
+
+export default products;

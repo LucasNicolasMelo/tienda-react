@@ -1,0 +1,24 @@
+import { useState, useEffect } from "react"
+
+export default function ItemCount(){
+    const [count, setCount] = useState(1)
+
+    useEffect( () => {}, []);
+
+    function handleResta (){
+        if (count > 1) {
+            setCount(count - 1)
+        }
+    }
+    function handleSuma (){
+        setCount (count + 1)
+    }
+
+    return(
+        <div>
+        <button onClick={handleResta}>-</button>
+        <span>{count}</span>
+        <button onClick={handleSuma}>+</button>
+        </div>
+    )
+}

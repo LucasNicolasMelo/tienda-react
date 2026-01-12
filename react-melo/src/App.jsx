@@ -4,6 +4,9 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer'
+import products from './data/products'
+import ItemCount from './components/ItemCount'
+
 
 
 function App() {
@@ -12,6 +15,7 @@ function App() {
     <>
       <NavBar />
       <ItemListContainer saludo="Bienvenidos a mi tienda" />
+      <ItemCount />
 
     </>
   )
