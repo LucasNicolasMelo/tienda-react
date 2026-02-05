@@ -1,16 +1,43 @@
-# React + Vite
+Proyecto Final React – E-commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto corresponde al trabajo final del curso de React.
 
-Currently, two official plugins are available:
+Se desarrolló una Single Page Application (SPA) de tipo e-commerce utilizando React, React Router y Firebase Firestore como base de datos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+El usuario puede navegar entre productos, ver el detalle de cada uno, agregar productos al carrito y finalizar una compra generando una orden.
 
-## React Compiler
+Tecnologías utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React + Vite
 
-## Expanding the ESLint configuration
+React Router DOM
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Context API
+
+Firebase Firestore
+
+CSS puro
+
+Git + GitHub
+
+Funcionalidades
+
+Listado dinámico de productos
+
+Filtrado por categorías
+
+Vista detalle de producto
+
+Selector de cantidad con validaciones de stock
+
+Carrito de compras con Context
+
+Cálculo de subtotales y total
+
+Checkout con formulario
+
+Confirmación de compra con ID generado en Firestore
+
+Renderizado condicional (loader, carrito vacío, sin stock)
+
+Navegación SPA sin recarga

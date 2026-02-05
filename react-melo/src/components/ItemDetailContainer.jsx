@@ -8,10 +8,12 @@ import "./itemdetail.css";
 export default function ItemDetailContainer() {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
+  const [added, setAdded] = useState(false); 
   const { addItemToCart, removeItemFromCart } = useContext(cartContext);
 
   function onAddToCart(count) {
     addItemToCart(product, count);
+    setAdded(true); 
   }
 
   useEffect(() => {
@@ -19,14 +21,20 @@ export default function ItemDetailContainer() {
   }, [productId]);
 
   return (
-    <section className="item-detail">
-      <h2>{product.title}</h2>
-      <hr />
-      <img src={product.img} alt={product.title} />
-      <p>{product.description}</p>
-      <h4>${product.price}</h4>
-      <ItemCount onAdd={onAddToCart} />
-      <button onClick={() => removeItemFromCart(product.id)}>Eliminar</button>
-    </section>
-  );
+  <section className="item-detail">
+    <h2>{product.title}</h2>
+    <hr />
+    <img src={product.img} alt={product.title} />
+    <p>{product.description}</p>
+    <h4>${product.price}</h4>
+
+    {product.stock === 0 ? (
+      <p>Producto sin stock</p>
+    ) : (
+      !added && <ItemCount onAdd={onAddToCart} stock={product.stock} />
+    )}
+
+    <button onClick={() => removeItemFromCart(product.id)}>Eliminar</button>
+  </section>
+);
 }

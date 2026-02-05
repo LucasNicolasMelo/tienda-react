@@ -1,32 +1,47 @@
-import Item from "./Item"
+import Item from "./Item";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getData, getCategoryData } from "../data/firestore";
-import './itemlist.css'
-
+import "./itemlist.css";
 
 export default function ItemListContainer(props) {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { categoryId } = useParams();
 
-useEffect(() => {
-  getData().then( (respuesta) => {
-    setProducts(respuesta)
-}).catch((error) => {
-    console.log(error)
-})
-},[categoryId])
+  useEffect(() => {
+    setLoading(true);
 
-const filteredProducts = categoryId
-    ? products.filter((p) => p.category === categoryId)
-    : products;
+    if (categoryId) {
+      getCategoryData(categoryId)
+        .then(respuesta => {
+          setProducts(respuesta);
+          setLoading(false);
+        })
+        .catch(error => console.log(error));
+    } else {
+      getData()
+        .then(respuesta => {
+          setProducts(respuesta);
+          setLoading(false);
+        })
+        .catch(error => console.log(error));
+    }
+  }, [categoryId]);
+
+  if (loading) {
+    return <h2>Cargando productos...</h2>;
+  }
 
   return (
     <section>
       <h2>{props.saludo}</h2>
-      {filteredProducts.map((item) => (
-        <Item key={item.id} {...item} />
-      ))}
+
+      <div className="item-list">
+        {products.map(item => (
+          <Item key={item.id} {...item} />
+        ))}
+      </div>
     </section>
   );
 }
