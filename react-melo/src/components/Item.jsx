@@ -11,7 +11,6 @@ export default function Item( {id, title, img, price}) {
             <Link to={`/producto/${id}`}>
              <button>Ver producto</button>
             </Link>
-            <ItemCount />
 
         </div>
     )

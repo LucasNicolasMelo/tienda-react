@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export default function ItemCount(){
+export default function ItemCount({ onAdd }){
     const [count, setCount] = useState(1)
 
     function handleResta (){
@@ -14,9 +14,13 @@ export default function ItemCount(){
 
     return(
         <div>
-        <button onClick={handleResta}>-</button>
-        <span>{count}</span>
-        <button onClick={handleSuma}>+</button>
+            <button onClick={handleResta}>-</button>
+            <span>{count}</span>
+            <button onClick={handleSuma}>+</button>
+            <br />
+                <button onClick={() => onAdd(count)}>
+                    Agregar al carrito
+                </button>
         </div>
     )
 }
