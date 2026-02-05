@@ -1,0 +1,17 @@
+.item-count-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-count-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.item-count-controls button,
+.add-to-cart-btn {
+  padding: 5px 10px;
+  cursor: pointer;
+}

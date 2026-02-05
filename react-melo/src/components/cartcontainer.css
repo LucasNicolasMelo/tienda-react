@@ -1,0 +1,36 @@
+.cart-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.cart-header h2 {
+  margin-bottom: 15px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.item-details {
+  flex-grow: 1;
+}
+
+.cart-actions,
+.checkout-form {
+  margin-top: 20px;
+}
+
+button {
+  cursor: pointer;
+}

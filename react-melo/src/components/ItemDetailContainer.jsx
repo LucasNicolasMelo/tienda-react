@@ -1,35 +1,32 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { GetItemData } from "../data/mockService";
+import { useEffect, useState, useContext } from "react";
 import ItemCount from "./ItemCount";
+import cartContext from "../context/cartContext";
+import { getItemData } from "../data/firestore";
+import "./itemdetail.css";
 
-function ItemDetailContainer() {
+export default function ItemDetailContainer() {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
+  const { addItemToCart, removeItemFromCart } = useContext(cartContext);
+
+  function onAddToCart(count) {
+    addItemToCart(product, count);
+  }
 
   useEffect(() => {
-    GetItemData(productId)
-      .then(response => setProduct(response))
+    getItemData(productId).then(response => setProduct(response));
   }, [productId]);
 
-  if (!product) return <h2>Cargando...</h2>;
-
   return (
-    <section style={{ padding: "20px", border: "1px solid black", borderRadius: "8px" }}>
+    <section className="item-detail">
       <h2>{product.title}</h2>
-
-      <img
-        src={product.img || "https://via.placeholder.com/300"}
-        alt={product.title}
-        width="300"
-      />
-
+      <hr />
+      <img src={product.img} alt={product.title} />
       <p>{product.description}</p>
-      <h4>Precio: ${product.price}</h4>
-
-      <ItemCount />
+      <h4>${product.price}</h4>
+      <ItemCount onAdd={onAddToCart} />
+      <button onClick={() => removeItemFromCart(product.id)}>Eliminar</button>
     </section>
   );
 }
-
-export default ItemDetailContainer;

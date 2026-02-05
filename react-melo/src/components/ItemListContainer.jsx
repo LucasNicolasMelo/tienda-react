@@ -1,8 +1,8 @@
 import Item from "./Item"
-import getData from "../data/mockService"
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { getData, getCategoryData } from "../data/firestore";
+import './itemlist.css'
 
 
 export default function ItemListContainer(props) {
@@ -15,7 +15,7 @@ useEffect(() => {
 }).catch((error) => {
     console.log(error)
 })
-},[])
+},[categoryId])
 
 const filteredProducts = categoryId
     ? products.filter((p) => p.category === categoryId)
