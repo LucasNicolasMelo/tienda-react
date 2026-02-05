@@ -8,7 +8,7 @@ export default function CartWidget() {
 
   return (
     <Link to="/cart" className="cart-widget">
-      <span className="cart-icon">🛒</span>
+      <span className="cart-icon" role="img" aria-label="Carrito de compras">🛒</span>
       <span className="cart-count">{countItemsInCart()}</span>
     </Link>
   );

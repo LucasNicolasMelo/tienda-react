@@ -4,29 +4,27 @@ import { useParams } from "react-router-dom";
 import { getData, getCategoryData } from "../data/firestore";
 import "./itemlist.css";
 
-export default function ItemListContainer(props) {
+export default function ItemListContainer({ saludo }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { categoryId } = useParams();
 
   useEffect(() => {
-    setLoading(true);
-
-    if (categoryId) {
-      getCategoryData(categoryId)
-        .then(respuesta => {
-          setProducts(respuesta);
-          setLoading(false);
-        })
-        .catch(error => console.log(error));
-    } else {
-      getData()
-        .then(respuesta => {
-          setProducts(respuesta);
-          setLoading(false);
-        })
-        .catch(error => console.log(error));
+    async function fetchProducts() {
+      setLoading(true);
+      try {
+        const respuesta = categoryId
+          ? await getCategoryData(categoryId)
+          : await getData();
+        setProducts(respuesta);
+      } catch (error) {
+        console.log("Error cargando productos:", error);
+      } finally {
+        setLoading(false);
+      }
     }
+
+    fetchProducts();
   }, [categoryId]);
 
   if (loading) {
@@ -35,8 +33,7 @@ export default function ItemListContainer(props) {
 
   return (
     <section>
-      <h2>{props.saludo}</h2>
-
+      <h2>{saludo}</h2>
       <div className="item-list">
         {products.map(item => (
           <Item key={item.id} {...item} />

@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
-import ItemCount from "./ItemCount"
+import Button from "./Button";
+import "./Item.css";
 
 export default function Item( {id, title, img, price}) {
 
     return (
-        <div style={{border: "1px solid black", borderRadius: "8px", padding: "16px"}}>
+        <div className="item-card">
             <h3>{title}</h3>
             <img width="200" src={img} alt="" />
             <p>$ {price}</p>

@@ -10,6 +10,7 @@ import {
   where
 } from "firebase/firestore";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyC_16OFZ2ybzSMps4rSE47zGND7chbKInY",
   authDomain: "react-melo.firebaseapp.com",
@@ -19,8 +20,10 @@ const firebaseConfig = {
   appId: "1:112257693746:web:8decdc5eb76be5392ca42b"
 };
 
+
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
+
 
 export async function getData() {
   const ref = collection(db, "products");
@@ -31,6 +34,7 @@ export async function getData() {
     id: doc.id
   }));
 }
+
 
 export async function getItemData(id) {
   const ref = doc(db, "products", id);
@@ -62,4 +66,5 @@ export async function createBuyOrder(buyOrderData) {
   const docRef = await addDoc(ref, buyOrderData);
 
   alert(`Gracias por tu compra! ID: ${docRef.id}`);
+  return docRef.id;
 }

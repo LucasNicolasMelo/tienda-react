@@ -8,12 +8,12 @@ import "./itemdetail.css";
 export default function ItemDetailContainer() {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
-  const [added, setAdded] = useState(false); 
+  const [added, setAdded] = useState(false);
   const { addItemToCart, removeItemFromCart } = useContext(cartContext);
 
   function onAddToCart(count) {
     addItemToCart(product, count);
-    setAdded(true); 
+    setAdded(true);
   }
 
   useEffect(() => {
@@ -21,20 +21,35 @@ export default function ItemDetailContainer() {
   }, [productId]);
 
   return (
-  <section className="item-detail">
-    <h2>{product.title}</h2>
-    <hr />
-    <img src={product.img} alt={product.title} />
-    <p>{product.description}</p>
-    <h4>${product.price}</h4>
+    <section className="item-detail">
+      <h2>{product.title}</h2>
+      <hr />
 
-    {product.stock === 0 ? (
-      <p>Producto sin stock</p>
-    ) : (
-      !added && <ItemCount onAdd={onAddToCart} stock={product.stock} />
-    )}
+      <div className="item-detail-content">
+        <img src={product.img} alt={product.title} />
 
-    <button onClick={() => removeItemFromCart(product.id)}>Eliminar</button>
-  </section>
-);
+        <div className="item-detail-info">
+          <p>{product.description}</p>
+          <h4>${product.price}</h4>
+
+          {product.stock === 0 ? (
+            <p>Producto sin stock</p>
+          ) : (
+            !added && (
+              <div className="item-count-wrapper">
+                <ItemCount onAdd={onAddToCart} stock={product.stock} />
+              </div>
+            )
+          )}
+
+          <button
+            className="custom-button"
+            onClick={() => removeItemFromCart(product.id)}
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </section>
+  );
 }
